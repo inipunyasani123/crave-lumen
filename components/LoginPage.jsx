@@ -73,7 +73,7 @@ export default function LoginPage() {
               <input type="checkbox" className="accent-zinc-600" />
               Remember me
             </label>
-            <a href="#" className="text-zinc-600 hover:underline">
+            <a href="/forgot" className="text-zinc-600 hover:underline">
               Forgot password?
             </a>
           </div>
@@ -87,7 +87,7 @@ export default function LoginPage() {
 
           <p className="text-sm text-center text-zinc-500">
             Don’t have an account?{' '}
-            <a href="#" className="text-zinc-600 hover:underline font-medium">
+            <a href="/register" className="text-zinc-600 hover:underline font-medium">
               Register here
             </a>
           </p>
