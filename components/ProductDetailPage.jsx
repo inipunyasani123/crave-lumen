@@ -1,98 +1,90 @@
-'use client'
+import Link from 'next/link'
 
-import Image from 'next/image'
-import { Star, ShieldCheck, Truck, CheckCircle } from 'lucide-react'
+const spek = [
+  ['Material', 'Silikon medical-grade, bebas BPA'],
+  ['Ketahanan air', 'Tahan percik — tidak untuk direndam'],
+  ['Daya', 'Isi ulang USB-C, ±2 jam pemakaian'],
+  ['Kebisingan', 'Di bawah 45 dB pada mode terendah'],
+  ['Isi paket', 'Alat, kabel, kantong simpan, panduan'],
+  ['Garansi', '12 bulan untuk kerusakan bukan akibat salah pakai'],
+]
 
-const product = {
-  name: 'Velvet Pulse Wand',
-  tagline: 'A masterpiece of sensual silence.',
-  price: 149,
-  reviews: 248,
-  rating: 4.9,
-  description: `Blending aesthetic harmony and engineering excellence, Velvet Pulse is more than a wand — it's an invitation to explore intimacy through sensation, precision, and silence.`,
-  highlights: [
-    'Whisper-quiet dual motors',
-    'Medical-grade silicone surface',
-    'App-controlled vibration modes',
-    'Wireless magnetic USB charging',
-    'Full-body waterproof (IPX7)',
-  ],
-}
+const galeri = ['/images/p5.jpg', '/images/p9.jpeg', '/images/p10.jpeg']
 
 export default function ProductDetailPage() {
   return (
-    <section className="bg-day text-slate-ink px-6 py-32 md:px-24 font-sans">
-      <div className="max-w-7xl mx-auto space-y-24">
+    <section className="relative overflow-hidden bg-day pt-28 pb-20 md:pt-36 md:pb-28">
+      <div aria-hidden="true" className="daylight absolute inset-x-0 top-0 h-72" />
 
-        {/* 💫 Scene 1: Hero Visual */}
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-5">
-            <h1 className="text-5xl md:text-6xl font-serif font-bold leading-tight tracking-tight">
-              {product.name}
-            </h1>
-            <p className="text-slate-soft text-lg">{product.tagline}</p>
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <nav aria-label="Remah roti" className="micro mb-10 flex flex-wrap items-center gap-2 text-slate-soft/55">
+          <Link href="/" className="transition-colors hover:text-salvia">
+            Beranda
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span className="text-slate-ink">Lumen Duo</span>
+        </nav>
 
-            {/* Rating */}
-            <div className="flex items-center gap-2 mt-4 text-yellow-500">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={18} fill="#facc15" className="text-yellow-400" />
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+          <div>
+            <div className="relative aspect-square overflow-hidden term-card">
+              <img src={galeri[0]} alt="Lumen Duo" className="h-full w-full object-cover" />
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-4">
+              {galeri.map((g, i) => (
+                <div key={g} className="relative aspect-square overflow-hidden term-card">
+                  <img src={g} alt={`Lumen Duo tampilan ${i + 1}`} className="h-full w-full object-cover" />
+                </div>
               ))}
-              <span className="ml-2 text-sm text-slate-soft">({product.reviews} reviews)</span>
-            </div>
-
-            <p className="text-base text-slate-soft leading-relaxed mt-6">{product.description}</p>
-          </div>
-
-          <div className="relative w-full h-[520px] rounded-3xl overflow-hidden shadow-xl">
-            <Image
-              src="/images/p3.jpg"
-              alt={product.name}
-              fill
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
-
-        {/* 🎯 Scene 2: Features + Icons */}
-        <div className="grid md:grid-cols-2 gap-24 items-start">
-          <div className="space-y-5">
-            <h2 className="text-3xl font-serif font-semibold">Crafted For Deep Connection</h2>
-            <ul className="mt-6 space-y-3 pl-5 text-slate-soft text-sm list-disc">
-              {product.highlights.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="grid gap-6 text-sm text-slate-soft">
-            <div className="flex items-center gap-4">
-              <Truck size={20} className="text-sand" />
-              <span>Discreet worldwide shipping in 2–5 business days</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <ShieldCheck size={20} className="text-sand" />
-              <span>2-year quality warranty & lifetime support</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <CheckCircle size={20} className="text-sand" />
-              <span>100% body-safe materials (tested & certified)</span>
             </div>
           </div>
-        </div>
 
-        {/* 💳 Scene 3: Pricing + CTA */}
-        <div className="border-t border-slate-ink/12 pt-12 grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-3">
-            <h3 className="text-2xl font-semibold font-serif">{product.name}</h3>
-            <p className="text-sm text-slate-soft max-w-md">
-              Secure checkout. Discreet packaging. Designed in Berlin.
+          <div>
+            <p className="micro mb-4 text-salvia">Bebas BPA · Tahan percik</p>
+            <h1 className="text-[2.2rem] leading-[1.06] md:text-[2.9rem]">Lumen Duo</h1>
+
+            <p className="mt-5 leading-relaxed text-slate-soft">
+              Dua motor terpisah dengan sepuluh pola. Semua istilah pada spesifikasi di bawah
+              dijelaskan di Kamus Ringkas, supaya Anda bisa membandingkan sendiri sebelum memutuskan.
             </p>
-          </div>
 
-          <div className="flex items-center gap-8 justify-start md:justify-end">
-            <span className="text-4xl font-bold text-sand">${product.price}</span>
-            <button className="px-7 py-3 rounded-full bg-slate-ink text-day hover:bg-slate-ink transition shadow-xl">
-              Add to Cart
-            </button>
+            <p className="mt-8 text-2xl font-semibold text-slate-ink">Rp 1.240.000</p>
+
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/checkout"
+                className="inline-flex flex-1 items-center justify-center pill bg-slate-ink px-8 py-4 text-sm font-semibold text-day transition-colors duration-300 hover:bg-salvia"
+              >
+                Pesan Sekarang
+              </Link>
+              <Link
+                href="/#kontak"
+                className="inline-flex items-center justify-center pill border border-slate-ink/20 px-8 py-4 text-sm font-semibold text-slate-ink transition-colors duration-300 hover:border-slate-ink/50"
+              >
+                Tanya Dulu
+              </Link>
+            </div>
+
+            <div className="mt-8 flex items-center gap-3.5 term-card px-5 py-4">
+              <span aria-hidden="true" className="h-8 w-8 shrink-0 bg-sand" />
+              <p className="text-sm leading-relaxed text-slate-ink/85">
+                Belum jelas istilahnya? Buka Kamus Ringkas — enam kata yang paling sering bikin ragu
+                dijelaskan di sana.
+              </p>
+            </div>
+
+            <dl className="mt-10 divide-y divide-slate-ink/10 border-t border-slate-ink/10">
+              {spek.map(([k, v]) => (
+                <div key={k} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <dt className="micro text-slate-soft/55">{k}</dt>
+                  <dd className="text-sm text-slate-ink sm:text-right">{v}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="micro mt-8 leading-[1.7] text-slate-soft/45">
+              Spesifikasi dan harga di atas adalah contoh untuk keperluan purwarupa desain.
+            </p>
           </div>
         </div>
       </div>

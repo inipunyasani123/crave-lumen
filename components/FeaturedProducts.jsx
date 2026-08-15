@@ -1,97 +1,74 @@
-'use client'
+import Link from 'next/link'
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
-
-const products = [
+const produk = [
   {
-    name: 'Velvet Orbit',
-    price: '$149',
-    subtitle: 'Multi-sensory wand for intimate journeys.',
-    image: '/images/p4.jpg',
-    badge: 'Bestseller',
-  },
-  {
-    name: 'SilkGlide Serum',
-    price: '$42',
-    subtitle: 'Water-based luxury, feather-light glide.',
-    image: '/images/p3.jpg',
-    badge: 'Limited Edition',
-  },
-  {
-    name: 'PulseSync Duo',
-    price: '$199',
-    subtitle: 'App-enabled toy for couples. Together, apart.',
+    nama: 'Lumen Duo',
+    harga: 'Rp 1.240.000',
+    tag: 'Tahan percik',
+    desc: 'Dua motor terpisah, sepuluh pola. Semua istilah pada spesifikasinya ada di Kamus Ringkas.',
     image: '/images/p5.jpg',
-    badge: 'Smart Tech',
   },
   {
-    name: 'Noir Lace Set',
-    price: '$89',
-    subtitle: 'Sensual lingerie in timeless noir.',
+    nama: 'Pelumas Berbahan Air',
+    harga: 'Rp 149.000',
+    tag: 'Aman untuk silikon',
+    desc: 'Mudah dibilas dan paling jarang memicu iritasi. Cocok dipakai bersama alat berbahan silikon.',
     image: '/images/p7.jpg',
-    badge: 'Curated Pick',
+  },
+  {
+    nama: 'Set Perawatan',
+    harga: 'Rp 320.000',
+    tag: 'Setelah pemakaian',
+    desc: 'Pembersih alat, lap microfiber, dan kantong simpan — supaya umur pakainya panjang.',
+    image: '/images/p8.jpg',
   },
 ]
 
 export default function FeaturedProducts() {
   return (
-    <section className="bg-day py-36 px-6 md:px-20">
-      <div className="max-w-screen-2xl mx-auto text-center mb-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-5xl md:text-6xl font-serif font-semibold text-slate-ink"
-        >
-          Intimacy, Curated.
-        </motion.h2>
-        <p className="text-slate-soft text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
-          A thoughtfully selected collection — each piece refined to heighten connection, sensation, and shared pleasure.
+    <section id="produk" className="relative overflow-hidden bg-day py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-12 max-w-xl">
+          <p className="micro mb-5 text-salvia">Paling sering dipesan</p>
+          <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
+            Tiga yang keterangannya paling mudah dipahami
+          </h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {produk.map((p) => (
+            <article key={p.nama} className="term-card group flex flex-col overflow-hidden">
+              <div className="relative aspect-square overflow-hidden bg-day-2">
+                <img
+                  src={p.image}
+                  alt={p.nama}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <span className="micro pill absolute top-4 left-4 bg-day/90 px-3.5 py-1.5 text-salvia backdrop-blur-sm">
+                  {p.tag}
+                </span>
+              </div>
+
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="font-[family-name:var(--font-display)] text-xl text-slate-ink">
+                  {p.nama}
+                </h3>
+                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-slate-soft">{p.desc}</p>
+
+                <div className="mt-6 flex items-center justify-between border-t border-slate-ink/10 pt-5">
+                  <span className="text-base font-semibold text-slate-ink">{p.harga}</span>
+                  <Link href="/produk" className="micro text-salvia transition-colors hover:text-slate-ink">
+                    Rincian
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p className="micro mt-8 leading-[1.7] text-slate-soft/45">
+          Harga dan nama barang di atas adalah contoh untuk keperluan purwarupa desain.
         </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
-        {products.map((product, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ y: -6, scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-            className="group bg-day rounded-3xl border border-slate-ink/12 shadow-sm hover:shadow-lg transition relative overflow-hidden"
-          >
-            {/* Badge */}
-            <span className="absolute top-4 left-4 z-10 bg-slate-ink text-day text-xs uppercase font-semibold px-3 py-1 rounded-full tracking-wider">
-              {product.badge}
-            </span>
-
-            {/* Image */}
-            <div className="relative w-full h-72 overflow-hidden">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Content */}
-            <div className="p-6 space-y-4">
-              <div>
-                <h3 className="text-xl font-medium text-slate-ink">{product.name}</h3>
-                <p className="text-sm text-slate-soft leading-snug">{product.subtitle}</p>
-              </div>
-
-              <div className="flex items-center justify-between mt-4">
-                <span className="text-lg font-semibold text-slate-soft">{product.price}</span>
-                <button className="text-slate-soft hover:text-slate-ink transition-transform group-hover:translate-x-1">
-                  <ArrowRight size={18} />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        ))}
       </div>
     </section>
   )

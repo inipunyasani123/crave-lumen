@@ -1,133 +1,153 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
-import { Minus, Plus, Lock, X } from 'lucide-react'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
 
-const initialCart = [
-  { id: 1, name: 'Velvet Pulse Wand', price: 149, quantity: 1, image: '/images/p4.jpg' },
-  { id: 2, name: 'Silken Lube Noir', price: 39, quantity: 2, image: '/images/p3.jpg' },
+const ringkasan = [
+  ['Lumen Duo', 'Rp 1.240.000'],
+  ['Pengiriman reguler', 'Rp 25.000'],
 ]
 
 export default function CheckoutPage() {
-  const [cart, setCart] = useState(initialCart)
+  const [form, setForm] = useState({ nama: '', surel: '', telepon: '', alamat: '', catatan: '' })
+  const [mengirim, setMengirim] = useState(false)
+  const [selesai, setSelesai] = useState(false)
 
-  const updateQuantity = (id, type) => {
-    setCart(prev =>
-      prev.map(item =>
-        item.id === id
-          ? {
-              ...item,
-              quantity:
-                type === 'increase'
-                  ? item.quantity + 1
-                  : Math.max(1, item.quantity - 1),
-            }
-          : item
-      )
-    )
+  const ubah = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }))
+
+  const kirim = (e) => {
+    e.preventDefault()
+    setMengirim(true)
+    // Purwarupa desain — pemesanan disimulasikan, tanpa backend maupun pembayaran.
+    setTimeout(() => {
+      setMengirim(false)
+      setSelesai(true)
+    }, 1100)
   }
-
-  const removeItem = id => {
-    setCart(prev => prev.filter(item => item.id !== id))
-  }
-
-  const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
-  const shipping = subtotal > 100 ? 0 : 12
-  const total = subtotal + shipping
 
   return (
-    <section className="bg-day text-slate-ink py-28 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-16">
-        {/* 🛒 Cart Area */}
-        <div className="lg:col-span-2 space-y-10">
-          <h2 className="text-4xl font-serif font-semibold">Your Cart</h2>
+    <section className="relative overflow-hidden bg-day pt-28 pb-20 md:pt-36 md:pb-28">
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
+        <p className="micro mb-5 text-salvia">Pemesanan</p>
+        <h1 className="text-[2.2rem] leading-[1.06] md:text-[2.9rem]">Satu langkah lagi</h1>
 
-          {cart.length === 0 ? (
-            <p className="text-slate-soft">Your cart is empty.</p>
-          ) : (
-            cart.map(item => (
-              <div
-                key={item.id}
-                className="flex flex-col md:flex-row items-start md:items-center gap-6 border-b border-slate-ink/12 pb-8"
-              >
-                <div className="relative w-full md:w-36 h-52 md:h-36 rounded-xl overflow-hidden shadow-sm">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
+        <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
+          <AnimatePresence mode="wait">
+            {selesai ? (
+              <motion.div key="ok" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="term-card px-8 py-16 text-center">
+                <span aria-hidden="true" className="mx-auto mb-6 block h-12 w-12 bg-sand" />
+                <h2 className="text-xl font-semibold text-slate-ink">Pesanan tercatat</h2>
+                <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-slate-soft">
+                  Kami kirim rincian ke surel Anda. Paket berangkat dalam kotak cokelat polos, tanpa
+                  nama merek di resi.
+                </p>
+                <button onClick={() => setSelesai(false)} className="micro mt-8 border-b border-salvia/50 pb-1 text-salvia hover:border-salvia">
+                  Buat pesanan lain
+                </button>
+              </motion.div>
+            ) : (
+              <motion.form key="f" onSubmit={kirim} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-7">
+                <div className="grid gap-7 sm:grid-cols-2">
+                  <Field label="Nama penerima" name="nama" value={form.nama} onChange={ubah} required />
+                  <Field label="Telepon" name="telepon" type="tel" value={form.telepon} onChange={ubah} required />
+                </div>
+                <Field label="Surel" name="surel" type="email" value={form.surel} onChange={ubah} required />
+
+                <div>
+                  <label htmlFor="alamat" className="micro mb-3 block text-slate-soft/60">
+                    Alamat pengiriman <span className="text-salvia">*</span>
+                  </label>
+                  <textarea
+                    id="alamat"
+                    name="alamat"
+                    rows={3}
+                    required
+                    value={form.alamat}
+                    onChange={ubah}
+                    className="w-full resize-y border-b border-slate-ink/20 bg-transparent pb-2 text-sm text-slate-ink placeholder:text-slate-soft/35 focus:border-salvia focus:outline-none"
+                    placeholder="Nama jalan, nomor, kota, kode pos"
                   />
                 </div>
 
-                <div className="flex-1 space-y-2">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-medium">{item.name}</h3>
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      className="text-slate-soft hover:text-red-500 transition"
-                    >
-                      <X size={18} />
-                    </button>
-                  </div>
-
-                  <div className="text-slate-soft text-sm">Luxury Edition</div>
-
-                  <div className="mt-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => updateQuantity(item.id, 'decrease')}
-                        className="w-8 h-8 border border-slate-ink/12 rounded hover:border-slate-ink/12 flex items-center justify-center"
-                      >
-                        <Minus size={16} />
-                      </button>
-                      <span className="text-lg">{item.quantity}</span>
-                      <button
-                        onClick={() => updateQuantity(item.id, 'increase')}
-                        className="w-8 h-8 border border-slate-ink/12 rounded hover:border-slate-ink/12 flex items-center justify-center"
-                      >
-                        <Plus size={16} />
-                      </button>
-                    </div>
-                    <span className="text-lg font-semibold text-slate-soft">
-                      ${item.price * item.quantity}
-                    </span>
-                  </div>
+                <div>
+                  <label htmlFor="catatan" className="micro mb-3 block text-slate-soft/60">
+                    Catatan untuk kurir
+                  </label>
+                  <input
+                    id="catatan"
+                    name="catatan"
+                    value={form.catatan}
+                    onChange={ubah}
+                    placeholder="Mis. titip ke satpam, jangan dibunyikan bel"
+                    className="w-full border-b border-slate-ink/20 bg-transparent pb-2 text-sm text-slate-ink placeholder:text-slate-soft/35 focus:border-salvia focus:outline-none"
+                  />
                 </div>
+
+                <button
+                  type="submit"
+                  disabled={mengirim}
+                  className="pill w-full bg-slate-ink py-4 text-sm font-semibold text-day transition-colors hover:bg-salvia disabled:opacity-70"
+                >
+                  {mengirim ? 'Memproses…' : 'Selesaikan Pesanan'}
+                </button>
+
+                <p className="micro leading-[1.7] text-slate-soft/45">
+                  Purwarupa desain — pemesanan disimulasikan, tidak ada pembayaran maupun data yang
+                  tersimpan.
+                </p>
+              </motion.form>
+            )}
+          </AnimatePresence>
+
+          <aside className="h-fit term-card p-7">
+            <h2 className="micro mb-6 text-slate-ink">Ringkasan</h2>
+            <dl className="divide-y divide-slate-ink/10">
+              {ringkasan.map(([k, v]) => (
+                <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
+                  <dt className="text-sm text-slate-soft">{k}</dt>
+                  <dd className="text-sm font-semibold text-slate-ink">{v}</dd>
+                </div>
+              ))}
+              <div className="flex items-baseline justify-between gap-4 py-4">
+                <dt className="text-sm font-semibold text-slate-ink">Total</dt>
+                <dd className="text-lg font-semibold text-salvia">Rp 1.265.000</dd>
               </div>
-            ))
-          )}
-        </div>
+            </dl>
 
-        {/* 💳 Summary */}
-        <div className="sticky top-28 self-start bg-day-2 border border-slate-ink/12 rounded-2xl p-8 shadow-md space-y-6">
-          <h3 className="text-xl font-serif font-semibold mb-4">Order Summary</h3>
-
-          <div className="space-y-4 text-sm">
-            <div className="flex justify-between text-slate-soft">
-              <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+            <div className="mt-7 flex items-start gap-3.5 border-t border-slate-ink/10 pt-6">
+              <span aria-hidden="true" className="mt-0.5 h-7 w-7 shrink-0 bg-sand" />
+              <p className="text-sm leading-relaxed text-slate-soft">
+                Dikirim dalam kemasan polos, tanpa nama merek di resi.
+              </p>
             </div>
-            <div className="flex justify-between text-slate-soft">
-              <span>Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
-            </div>
-            <div className="border-t pt-4 flex justify-between text-base text-slate-ink font-semibold">
-              <span>Total</span>
-              <span>${total.toFixed(2)}</span>
-            </div>
-          </div>
 
-          <button className="w-full mt-6 py-3 bg-slate-ink hover:bg-slate-ink text-day font-medium rounded-xl transition-all duration-300 shadow">
-            Continue to Payment
-          </button>
-
-          <div className="flex items-center gap-2 text-xs text-slate-soft mt-3">
-            <Lock size={14} className="text-slate-soft" />
-            Encrypted & secure checkout
-          </div>
+            <Link href="/produk" className="micro mt-6 inline-block text-salvia hover:text-salvia">
+              ← Kembali ke produk
+            </Link>
+          </aside>
         </div>
       </div>
     </section>
+  )
+}
+
+function Field({ label, name, value, onChange, type = 'text', required = false }) {
+  return (
+    <div>
+      <label htmlFor={name} className="micro mb-3 block text-slate-soft/60">
+        {label}
+        {required && <span className="ml-1 text-salvia">*</span>}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        required={required}
+        value={value}
+        onChange={onChange}
+        className="w-full border-b border-slate-ink/20 bg-transparent pb-2 text-sm text-slate-ink focus:border-salvia focus:outline-none"
+      />
+    </div>
   )
 }

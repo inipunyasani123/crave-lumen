@@ -1,86 +1,50 @@
-'use client'
+import { BookOpen, ShieldCheck, Package, MessageCircle } from 'lucide-react'
 
-import { motion } from 'framer-motion'
-import { Sparkles, ShieldCheck, Infinity, Gem } from 'lucide-react'
-
-const usps = [
+const jaminan = [
   {
-    icon: <Sparkles className="text-slate-soft" size={28} />,
-    title: 'Crafted for Chemistry',
-    desc: 'We fuse neuroscience and industrial design to awaken intimacy through ergonomic forms and responsive feedback.',
+    icon: BookOpen,
+    title: 'Dijelaskan lebih dulu',
+    desc: 'Setiap istilah pada keterangan produk ada penjelasannya di Kamus Ringkas, supaya Anda bisa membandingkan sendiri.',
   },
   {
-    icon: <ShieldCheck className="text-slate-soft" size={28} />,
-    title: 'Unmatched Discretion',
-    desc: 'Neutral billing. Minimalist packaging. Silent mode tech. Always built for privacy and peace of mind.',
+    icon: ShieldCheck,
+    title: 'Material medical-grade',
+    desc: 'Silikon tidak berpori dan bebas BPA — tidak menyerap, bisa dibersihkan sampai benar-benar bersih.',
   },
   {
-    icon: <Infinity className="text-slate-soft" size={28} />,
-    title: 'Endless Assurance',
-    desc: 'Backed by our lifetime care promise and 2-year no-questions warranty on all intimacy devices.',
+    icon: Package,
+    title: 'Kemasan polos',
+    desc: 'Kotak tanpa cetakan dan tanpa logo. Nama merek tidak muncul di resi maupun mutasi rekening.',
   },
   {
-    icon: <Gem className="text-slate-soft" size={28} />,
-    title: 'Luxury That Listens',
-    desc: 'Sourced from body-safe, luxury-grade materials, hand-inspected and rigorously lab-tested for your comfort.',
+    icon: MessageCircle,
+    title: 'Tanya tanpa sungkan',
+    desc: 'Tidak ada pertanyaan yang kami anggap terlalu dasar, dan tidak ada yang dijawab dengan tawaran barang.',
   },
 ]
 
 export default function USPSection() {
   return (
-    <section className="bg-day py-32 px-6 md:px-20 font-sans text-slate-ink">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-semibold tracking-tight">
-            The Foundation of Intimacy
+    <section id="jaminan" className="relative overflow-hidden bg-day py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-14 max-w-2xl">
+          <p className="micro mb-5 text-salvia">Jaminan</p>
+          <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
+            Empat hal yang membuatnya terang, bukan remang
           </h2>
-          <p className="text-slate-soft mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
-            More than just products — we deliver values that shape trust, comfort, and deeper connection.
-          </p>
-        </motion.div>
-
-        {/* USP Grid */}
-        <div className="grid md:grid-cols-2 gap-12">
-          {usps.map((usp, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="group bg-day-2 hover:bg-day-2 transition-all duration-300 border border-slate-ink/12 hover:border-slate-ink/12 rounded-xl p-8 shadow-sm hover:shadow-md"
-            >
-              <div className="flex items-start gap-5">
-                <div className="p-3 bg-day-2/60 rounded-full shadow-inner">
-                  {usp.icon}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">{usp.title}</h3>
-                  <p className="mt-2 text-slate-soft leading-relaxed text-sm">{usp.desc}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
         </div>
 
-        {/* Trust Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-24"
-        >
-          <p className="text-sm uppercase text-slate-soft tracking-widest">Fully Certified • Discreet • Ethically Made</p>
-          <div className="h-[2px] bg-gradient-to-r from-transparent via-zinc-400 to-transparent mt-4 w-full" />
-        </motion.div>
+        <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {jaminan.map((j) => (
+            <div key={j.title} className="term-card p-7">
+              <j.icon className="mb-6 h-6 w-6 text-salvia" strokeWidth={1.5} aria-hidden="true" />
+              <dt className="font-[family-name:var(--font-display)] text-lg text-slate-ink">
+                {j.title}
+              </dt>
+              <dd className="mt-3 text-sm leading-relaxed text-slate-soft">{j.desc}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   )
