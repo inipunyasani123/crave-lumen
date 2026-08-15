@@ -21,7 +21,7 @@ const product = {
 
 export default function ProductDetailPage() {
   return (
-    <section className="bg-white text-zinc-900 px-6 py-32 md:px-24 font-sans">
+    <section className="bg-day text-slate-ink px-6 py-32 md:px-24 font-sans">
       <div className="max-w-7xl mx-auto space-y-24">
 
         {/* 💫 Scene 1: Hero Visual */}
@@ -30,17 +30,17 @@ export default function ProductDetailPage() {
             <h1 className="text-5xl md:text-6xl font-serif font-bold leading-tight tracking-tight">
               {product.name}
             </h1>
-            <p className="text-zinc-600 text-lg">{product.tagline}</p>
+            <p className="text-slate-soft text-lg">{product.tagline}</p>
 
             {/* Rating */}
             <div className="flex items-center gap-2 mt-4 text-yellow-500">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={18} fill="#facc15" className="text-yellow-400" />
               ))}
-              <span className="ml-2 text-sm text-zinc-500">({product.reviews} reviews)</span>
+              <span className="ml-2 text-sm text-slate-soft">({product.reviews} reviews)</span>
             </div>
 
-            <p className="text-base text-zinc-700 leading-relaxed mt-6">{product.description}</p>
+            <p className="text-base text-slate-soft leading-relaxed mt-6">{product.description}</p>
           </div>
 
           <div className="relative w-full h-[520px] rounded-3xl overflow-hidden shadow-xl">
@@ -57,40 +57,40 @@ export default function ProductDetailPage() {
         <div className="grid md:grid-cols-2 gap-24 items-start">
           <div className="space-y-5">
             <h2 className="text-3xl font-serif font-semibold">Crafted For Deep Connection</h2>
-            <ul className="mt-6 space-y-3 pl-5 text-zinc-600 text-sm list-disc">
+            <ul className="mt-6 space-y-3 pl-5 text-slate-soft text-sm list-disc">
               {product.highlights.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
           </div>
-          <div className="grid gap-6 text-sm text-zinc-600">
+          <div className="grid gap-6 text-sm text-slate-soft">
             <div className="flex items-center gap-4">
-              <Truck size={20} className="text-orange-500" />
+              <Truck size={20} className="text-sand" />
               <span>Discreet worldwide shipping in 2–5 business days</span>
             </div>
             <div className="flex items-center gap-4">
-              <ShieldCheck size={20} className="text-orange-500" />
+              <ShieldCheck size={20} className="text-sand" />
               <span>2-year quality warranty & lifetime support</span>
             </div>
             <div className="flex items-center gap-4">
-              <CheckCircle size={20} className="text-orange-500" />
+              <CheckCircle size={20} className="text-sand" />
               <span>100% body-safe materials (tested & certified)</span>
             </div>
           </div>
         </div>
 
         {/* 💳 Scene 3: Pricing + CTA */}
-        <div className="border-t border-zinc-200 pt-12 grid md:grid-cols-2 gap-16 items-center">
+        <div className="border-t border-slate-ink/12 pt-12 grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-3">
             <h3 className="text-2xl font-semibold font-serif">{product.name}</h3>
-            <p className="text-sm text-zinc-500 max-w-md">
+            <p className="text-sm text-slate-soft max-w-md">
               Secure checkout. Discreet packaging. Designed in Berlin.
             </p>
           </div>
 
           <div className="flex items-center gap-8 justify-start md:justify-end">
-            <span className="text-4xl font-bold text-orange-500">${product.price}</span>
-            <button className="px-7 py-3 rounded-full bg-black text-white hover:bg-zinc-800 transition shadow-xl">
+            <span className="text-4xl font-bold text-sand">${product.price}</span>
+            <button className="px-7 py-3 rounded-full bg-slate-ink text-day hover:bg-slate-ink transition shadow-xl">
               Add to Cart
             </button>
           </div>

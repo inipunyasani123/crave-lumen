@@ -33,7 +33,7 @@ const categories = [
 
 export default function CategoryGrid() {
   return (
-    <section className="bg-white py-24 px-6 md:px-20 text-zinc-900">
+    <section className="bg-day py-24 px-6 md:px-20 text-slate-ink">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -64,7 +64,7 @@ export default function CategoryGrid() {
                 </div>
                 <div className="mt-5 space-y-1">
                   <h3 className="text-xl font-medium tracking-tight">{cat.name}</h3>
-                  <p className="text-sm text-zinc-500">{cat.desc}</p>
+                  <p className="text-sm text-slate-soft">{cat.desc}</p>
                 </div>
               </Link>
             </motion.div>

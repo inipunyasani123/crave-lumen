@@ -1,5 +1,7 @@
 import { Lora, Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const display = Lora({ subsets: ["latin"], variable: "--font-display", weight: ["500","600","700"] });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -38,11 +40,23 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#23302c",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
-      <body className={`${display.variable} ${inter.variable} antialiased`}>
-        {children}
+      <body className={`${display.variable} ${inter.variable} antialiased bg-day text-slate-soft overflow-x-hidden max-w-[100vw]`}>
+        <a
+          href="#konten"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-slate-ink focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-day"
+        >
+          Lompat ke konten utama
+        </a>
+        <Navbar />
+        <main id="konten">{children}</main>
+        <Footer />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(__jsonld) }} />
         </body>
     </html>
