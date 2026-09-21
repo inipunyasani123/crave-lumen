@@ -6,10 +6,10 @@ import Footer from "@/components/Footer";
 const display = Lora({ subsets: ["latin"], variable: "--font-display", weight: ["500","600","700"] });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const __jsonld = {"@context":"https://schema.org","@type":"CreativeWork","name":"Positive Crave — Konsep Lumen","description":"Landing page brand keintiman","url":"https://crave-lumen.pintuweb.com"};
+const __jsonld = {"@context":"https://schema.org","@type":"CreativeWork","name":"Positive Crave — Konsep Lumen","description":"Landing page brand keintiman","url":"https://crave-lumen.vercel.app"};
 
 export const metadata = {
-  metadataBase: new URL("https://crave-lumen.pintuweb.com"),
+  metadataBase: new URL("https://crave-lumen.vercel.app"),
   title: "Positive Crave — Konsep Lumen",
   description: "Landing page Positive Crave konsep \"Lumen\": keintiman dimulai dari cahaya — edukasi, rasa hormat, dan rasa aman.",
   applicationName: "Positive Crave",
@@ -17,11 +17,11 @@ export const metadata = {
   authors: [{ name: "Positive Crave" }],
   creator: "Positive Crave",
   publisher: "Positive Crave",
-  alternates: { canonical: "https://crave-lumen.pintuweb.com" },
+  alternates: { canonical: "https://crave-lumen.vercel.app" },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://crave-lumen.pintuweb.com",
+    url: "https://crave-lumen.vercel.app",
     siteName: "Positive Crave",
     title: "Positive Crave — Konsep Lumen",
     description: "Landing page Positive Crave konsep \"Lumen\": keintiman dimulai dari cahaya — edukasi, rasa hormat, dan rasa aman.",
