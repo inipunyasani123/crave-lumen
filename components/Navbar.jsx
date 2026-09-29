@@ -7,12 +7,14 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV = [
-  { label: 'Kamus', href: '/#kamus' },
-  { label: 'Koleksi', href: '/#produk' },
-  { label: 'Jaminan', href: '/#jaminan' },
+  { label: 'Kamus', href: '/kamus' },
+  { label: 'Koleksi', href: '/koleksi' },
+  { label: 'Belajar', href: '/belajar' },
   { label: 'Tanya Jawab', href: '/#tanya' },
   { label: 'Bantuan', href: '/#kontak' },
 ]
+
+const aktif = (pathname, href) => !href.startsWith('/#') && (pathname === href || pathname.startsWith(href + '/'))
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -55,7 +57,12 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Navigasi utama">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="micro text-slate-soft transition-colors hover:text-slate-ink">
+            <Link
+              key={n.href}
+              href={n.href}
+              aria-current={aktif(pathname, n.href) ? 'page' : undefined}
+              className={`micro transition-colors hover:text-slate-ink ${aktif(pathname, n.href) ? 'text-salvia-ink' : 'text-slate-soft'}`}
+            >
               {n.label}
             </Link>
           ))}
@@ -98,7 +105,7 @@ export default function Navbar() {
               aria-label="Menu navigasi"
             >
               <div className="flex items-center justify-between border-b border-slate-ink/10 px-6 py-4">
-                <span className="micro text-slate-soft/60">Menu</span>
+                <span className="micro text-slate-soft">Menu</span>
                 <button onClick={() => setOpen(false)} className="-mr-2 p-2 text-slate-ink" aria-label="Tutup menu">
                   <X size={20} strokeWidth={1.75} />
                 </button>

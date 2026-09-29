@@ -15,6 +15,7 @@
   --color-slate-ink: #23302c; /* teks utama, hijau kehitaman */
   --color-slate-soft: #5f6f68; /* teks sekunder */
   --color-salvia: #6b8f7a; /* aksen utama */
+  --color-salvia-ink: #4a6857; /* salvia untuk teks kecil — kontras 5,6:1 di latar terang */
   --color-sand: #d9c3a0; /* aksen hangat */
 
   --radius-round: 1.75rem;

@@ -1,89 +1,55 @@
-'use client'
+/* Cerita pembeli versi Lumen: tiap kutipan dipasangkan dengan pertanyaan yang
+   dulu membuat orang itu ragu — karena itulah yang paling berguna bagi
+   pembaca berikutnya. Tanpa bintang, tanpa logo perusahaan. */
 
-import { Star } from 'lucide-react'
-import { motion } from 'framer-motion'
-
-const testimonials = [
+const CERITA = [
   {
-    quote: 'This feels like the future of intimacy. Beautifully engineered, deeply human.',
-    name: 'Alena Roy',
-    company: 'NOVA Wellness',
-    logo: '/images/l1.jpeg',
-    rating: 5,
+    ragu: 'Pelumas itu tanda ada yang salah, kan?',
+    kutip: 'Ternyata bukan. Setelah membaca soal pH dan osmolalitas, saya baru sadar rasa perih selama ini dari pelumas lama, bukan dari saya.',
+    nama: 'R., 34',
+    kota: 'Bandung',
   },
   {
-    quote: 'The attention to detail is beyond anything we’ve experienced in sensual design.',
-    name: 'Hiro Tanaka',
-    company: 'Eros Japan',
-    logo: '/images/l2.jpeg',
-    rating: 4.5,
+    ragu: 'Bagaimana cara mencucinya tanpa merusak?',
+    kutip: 'Saya dulu membilas alat yang cuma tahan percik di bawah keran. Kartu cara merawat yang ikut di kotak menyelamatkan yang baru.',
+    nama: 'D. & A.',
+    kota: 'Surabaya',
   },
   {
-    quote: 'A product line that understands emotional connection and technological finesse.',
-    name: 'Clara Min',
-    company: 'MoodMatter',
-    logo: '/images/l3.jpeg',
-    rating: 5,
+    ragu: 'Apa bedanya silikon dengan yang lebih murah?',
+    kutip: 'Kamusnya menjelaskan tanpa menggurui. Saya membandingkan dua toko pakai istilah yang sama, lalu memutuskan sendiri.',
+    nama: 'M., 29',
+    kota: 'Yogyakarta',
   },
 ]
 
 export default function TestimonialsCarousel() {
   return (
-    <section className="bg-day py-32 px-6 md:px-16">
-      <div className="max-w-7xl mx-auto text-center mb-20">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-serif font-semibold text-slate-ink"
-        >
-          The Trust Gallery
-        </motion.h2>
-        <p className="text-slate-soft text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-          Brands that value intimacy, precision, and discretion share their thoughts on our vision and products.
+    <section aria-labelledby="cerita-judul" className="relative overflow-hidden bg-day-2 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-12 max-w-2xl">
+          <p className="micro mb-5 text-salvia-ink">Catatan pembeli</p>
+          <h2 id="cerita-judul" className="text-[2rem] leading-[1.14] md:text-[2.7rem]">Pertanyaan yang akhirnya berani ditanyakan</h2>
+        </div>
+        <ul className="grid gap-5 md:grid-cols-3">
+          {CERITA.map((c) => (
+            <li key={c.nama} className="term-card flex flex-col p-7">
+              <p className="rounded-full bg-day-2 px-4 py-2 text-sm text-slate-ink">
+                <span className="font-semibold">Dulu: </span>
+                {c.ragu}
+              </p>
+              <blockquote className="mt-6 flex-1 font-[family-name:var(--font-display)] text-lg leading-relaxed text-slate-ink">
+                &ldquo;{c.kutip}&rdquo;
+              </blockquote>
+              <p className="mt-6 border-t border-slate-ink/10 pt-4 text-sm text-slate-soft">
+                <span className="font-semibold text-slate-ink">{c.nama}</span> · {c.kota}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <p className="micro mt-8 leading-[1.7] text-slate-soft">
+          Nama disingkat atas permintaan. Kutipan adalah ilustrasi untuk keperluan purwarupa desain.
         </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-screen-2xl mx-auto px-2 md:px-0">
-        {testimonials.map((item, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 160 }}
-            className="p-8 bg-day border border-slate-ink/12 rounded-3xl shadow-sm hover:shadow-md transition group"
-          >
-            <p className="text-slate-soft text-[17px] leading-relaxed italic relative pl-4 border-l-4 border-slate-ink/12">
-              {item.quote}
-            </p>
-
-            <div className="mt-6 flex items-center gap-4">
-              <div className="flex flex-col">
-                <span className="text-base font-semibold text-slate-ink">{item.name}</span>
-                <div className="flex items-center gap-2 text-sm text-slate-soft">
-                  <img src={item.logo} alt={item.company} className="h-5" />
-                  <span>{item.company}</span>
-                </div>
-              </div>
-              <div className="ml-auto flex gap-[2px]">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Star
-                    key={i}
-                    size={18}
-                    className={
-                      i < Math.floor(item.rating)
-                        ? 'text-slate-soft'
-                        : i < item.rating
-                        ? 'text-slate-soft'
-                        : 'text-slate-soft'
-                    }
-                    fill={i < item.rating ? 'currentColor' : 'none'}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
       </div>
     </section>
   )

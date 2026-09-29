@@ -1,97 +1,85 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MessageSquare, Send, ShieldCheck } from 'lucide-react'
+
+/* Bantuan Lumen: saluran kontak + formulir pertanyaan dengan kategori.
+   Purwarupa — formulir disimulasikan, tidak ada yang dikirim. */
+
+const SALURAN = [
+  { label: 'Chat', nilai: 'Setiap hari 10.00–22.00 WIB', ket: 'Dijawab orang, bukan bot.' },
+  { label: 'Surel', nilai: 'halo@positivecrave.id', href: 'mailto:halo@positivecrave.id', ket: 'Untuk pertanyaan panjang atau klaim garansi.' },
+  { label: 'Telepon', nilai: '+62 812 3456 7890', href: 'tel:+6281234567890', ket: 'Senin–Jumat 09.00–17.00 WIB.' },
+]
+
+const TOPIK = ['Istilah & bahan', 'Cara pemakaian', 'Perawatan', 'Pengiriman', 'Garansi']
 
 export default function ContactSupport() {
-  const [mode, setMode] = useState('chat') // 'chat' | 'email'
+  const [ok, setOk] = useState(false)
 
   return (
-    <section className="bg-day text-slate-ink py-28 px-6 md:px-12">
-      <div className="max-w-5xl mx-auto space-y-16">
-        
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl md:text-5xl font-serif font-semibold tracking-tight">
-            Contact Our Support Team
-          </h2>
-          <p className="text-lg text-slate-soft">
-            We’re here to help — fast, friendly, and fully private.
+    <section id="kontak" aria-labelledby="kontak-judul" className="relative overflow-hidden bg-day-2 py-20 md:py-28">
+      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <p className="micro mb-5 text-salvia-ink">Bantuan</p>
+          <h2 id="kontak-judul" className="text-[2rem] leading-[1.14] md:text-[2.6rem]">Tanyakan seperti bertanya ke apotek</h2>
+          <p className="mt-5 leading-relaxed text-slate-soft">
+            Tenang, jelas, dan tanpa dorongan membeli. Bila jawabannya bisa berguna untuk orang lain, kami tambahkan
+            ke kamus — tanpa menyebut siapa yang bertanya.
           </p>
+          <dl className="mt-10 space-y-4">
+            {SALURAN.map((s) => (
+              <div key={s.label} className="term-card p-5">
+                <dt className="micro text-salvia-ink">{s.label}</dt>
+                <dd className="mt-2 font-semibold text-slate-ink">
+                  {s.href ? <a href={s.href} className="break-all underline decoration-salvia/50 underline-offset-4 hover:decoration-salvia">{s.nilai}</a> : s.nilai}
+                </dd>
+                <dd className="mt-1 text-sm text-slate-soft">{s.ket}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        {/* Mode Switcher */}
-        <div className="flex justify-center gap-6 text-sm font-medium">
-          <button
-            onClick={() => setMode('chat')}
-            className={`px-4 py-2 rounded-full border transition ${
-              mode === 'chat'
-                ? 'bg-slate-ink text-day border-slate-ink/12 shadow'
-                : 'text-slate-soft border-slate-ink/12 hover:border-slate-ink/12 hover:text-slate-ink'
-            }`}
-          >
-            <MessageSquare className="inline-block w-4 h-4 mr-1" />
-            Live Chat Request
-          </button>
-          <button
-            onClick={() => setMode('email')}
-            className={`px-4 py-2 rounded-full border transition ${
-              mode === 'email'
-                ? 'bg-slate-ink text-day border-slate-ink/12 shadow'
-                : 'text-slate-soft border-slate-ink/12 hover:border-slate-ink/12 hover:text-slate-ink'
-            }`}
-          >
-            <Mail className="inline-block w-4 h-4 mr-1" />
-            Email Support
-          </button>
-        </div>
-
-        {/* Contact Form */}
-        <div className="bg-day border border-slate-ink/12 rounded-xl p-8 md:p-12 shadow-lg space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-3">
-              <label className="block text-sm font-medium">Your Name</label>
-              <input
-                type="text"
-                placeholder="e.g. Aulia W."
-                className="w-full border border-slate-ink/12 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-400"
-              />
-            </div>
-
-            <div className="space-y-3">
-              <label className="block text-sm font-medium">Email Address</label>
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="w-full border border-slate-ink/12 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-400"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <label className="block text-sm font-medium">
-              {mode === 'chat' ? 'Chat Message' : 'Your Issue or Question'}
-            </label>
-            <textarea
-              rows={5}
-              placeholder={
-                mode === 'chat'
-                  ? 'I’d like to talk to someone about...'
-                  : 'I have a concern about order #1234...'
-              }
-              className="w-full border border-slate-ink/12 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-400"
-            />
-          </div>
-
-          <button className="flex items-center gap-2 px-6 py-3 bg-slate-ink hover:bg-slate-ink text-day font-semibold rounded-xl transition">
-            <Send size={16} />
-            Submit Request
-          </button>
-
-          <div className="flex items-center gap-2 text-sm text-slate-soft mt-2">
-            <ShieldCheck size={16} className="text-slate-soft" />
-            We respond within 12 hours, 7 days a week — fully private & secure.
-          </div>
+        <div className="term-card h-fit p-7 sm:p-9">
+          {ok ? (
+            <p role="status" className="rounded-[var(--radius-round)] bg-salvia/12 p-6 text-slate-ink">
+              Terima kasih. Di toko sungguhan, pertanyaan Anda dijawab lewat surel dalam satu hari kerja. Ini purwarupa
+              desain, jadi tidak ada yang terkirim.
+            </p>
+          ) : (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                setOk(true)
+              }}
+              className="space-y-5"
+            >
+              <fieldset>
+                <legend className="mb-3 text-sm font-medium text-slate-ink">Topik</legend>
+                <div className="flex flex-wrap gap-2">
+                  {TOPIK.map((t, i) => (
+                    <label key={t} className="cursor-pointer">
+                      <input type="radio" name="topik" value={t} defaultChecked={i === 0} className="peer sr-only" />
+                      <span className="inline-flex min-h-10 items-center rounded-full border border-slate-ink/15 px-4 text-sm text-slate-ink peer-checked:border-slate-ink peer-checked:bg-slate-ink peer-checked:text-day peer-focus-visible:ring-2 peer-focus-visible:ring-salvia">
+                        {t}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+              <div>
+                <label htmlFor="tanya-surel" className="mb-2 block text-sm font-medium text-slate-ink">Surel untuk balasan</label>
+                <input id="tanya-surel" type="email" required autoComplete="email" className="w-full rounded-full border border-slate-ink/15 bg-day px-5 py-3.5 text-slate-ink focus:border-salvia focus:outline-none" />
+              </div>
+              <div>
+                <label htmlFor="tanya-isi" className="mb-2 block text-sm font-medium text-slate-ink">Pertanyaan</label>
+                <textarea id="tanya-isi" rows={4} required className="w-full resize-y rounded-[1.25rem] border border-slate-ink/15 bg-day px-5 py-3.5 text-slate-ink focus:border-salvia focus:outline-none" />
+              </div>
+              <button type="submit" className="w-full rounded-full bg-slate-ink py-4 font-semibold text-day transition-colors hover:bg-salvia-ink">
+                Kirim pertanyaan
+              </button>
+              <p className="text-center text-xs text-slate-soft">Purwarupa desain — formulir tidak mengirim apa pun.</p>
+            </form>
+          )}
         </div>
       </div>
     </section>

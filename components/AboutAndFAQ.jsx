@@ -1,92 +1,67 @@
-'use client'
+import Link from 'next/link'
 
-import { useState } from 'react'
-import { ChevronDown, Quote } from 'lucide-react'
+/* Tanya jawab Lumen. Jawabannya selaras dengan katalog & kamus (pH 4,5,
+   kemasan polos, garansi alat). Memakai <details> supaya semua jawaban
+   ada di HTML dan bisa dibuka tanpa JavaScript. */
 
-const faqs = [
+const TANYA = [
   {
-    q: 'Apakah produk kami aman untuk kulit sensitif?',
-    a: 'Tentu. Semua produk kami dirancang menggunakan material body-safe, bebas dari lateks, phthalate, dan hypoallergenic.'
+    q: 'Apakah produknya aman untuk kulit sensitif?',
+    a: 'Semua alat memakai silikon medical-grade yang tidak berpori dan bebas BPA. Pelumas kami ber-pH 4,5 tanpa gliserin dan pewangi. Tetap hentikan pemakaian bila muncul kemerahan, dan periksakan bila berlanjut lebih dari dua hari.',
   },
   {
-    q: 'Apakah produk tersedia untuk pasangan?',
-    a: 'Ya, kami memiliki lini produk khusus untuk eksplorasi bersama pasangan dengan desain ergonomis dan fitur sinkronisasi.'
+    q: 'Pelumas mana yang harus saya pilih?',
+    a: 'Bila ragu, pilih yang berbahan air — aman untuk semua alat dan kondom lateks. Perbandingan lengkap air, silikon, dan minyak ada di halaman Belajar.',
+    tautan: ['/belajar/memilih-pelumas', 'Memilih pelumas'],
   },
   {
-    q: 'Bagaimana proses pengembalian barang?',
-    a: 'Mudah. Cukup ajukan permintaan via dashboard akun Anda, dan kami akan bantu proses pengembalian dalam waktu 48 jam.'
+    q: 'Apa arti "tahan percik" dan "IPX7"?',
+    a: 'Tahan percik hanya boleh dilap basah; IPX7 boleh direndam sebentar. Kodenya tercantum di panel Fakta Produk setiap alat.',
+    tautan: ['/kamus#ipx', 'Kode IPX di kamus'],
   },
   {
-    q: 'Dikirim dari mana dan berapa lama sampai?',
-    a: 'Produk dikirim dari pusat logistik regional kami di Jakarta dan Bandung. Estimasi pengiriman 2–4 hari kerja.'
+    q: 'Apa yang tertulis di paket?',
+    a: 'Kotak cokelat polos tanpa logo. Di resi hanya tertulis "perlengkapan pribadi", dan nama merek tidak muncul di mutasi rekening.',
+  },
+  {
+    q: 'Bagaimana kalau alatnya rusak?',
+    a: 'Alat bergaransi 12 bulan untuk kerusakan yang bukan akibat salah pemakaian. Barang habis pakai yang sudah dibuka tidak bisa dikembalikan demi kebersihan, kecuali cacat produksi.',
+  },
+  {
+    q: 'Apakah Anda menyimpan data kesehatan saya?',
+    a: 'Tidak. Kami tidak pernah menanyakan usia, jenis kelamin, atau kondisi kesehatan. Aplikasi untuk alat yang tersambung juga tidak menyimpan riwayat pemakaian di server.',
   },
 ]
 
 export default function AboutAndFAQ() {
-  const [active, setActive] = useState(null)
-
-  const toggle = index => {
-    setActive(active === index ? null : index)
-  }
-
   return (
-    <section className="bg-day text-slate-ink py-28 px-6 md:px-12 relative overflow-hidden">
-      {/* Gradient background blur */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-100px] right-[-150px] w-[400px] h-[400px] bg-sand/30 rounded-full blur-[160px] opacity-30" />
-        <div className="absolute bottom-[-80px] left-[-100px] w-[300px] h-[300px] bg-yellow-100 rounded-full blur-[120px] opacity-25" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-24 items-start">
-        
-        {/* 📖 About Story */}
-        <div className="space-y-10">
-          <h2 className="text-4xl md:text-5xl font-serif font-semibold tracking-tight leading-snug">
-            Who We Are
-          </h2>
-
-          <p className="text-slate-soft text-lg leading-relaxed">
-            We’re not just designing intimacy products — we’re reshaping how people connect with themselves and others. Each creation we craft is rooted in compassion, science, and style.
+    <section id="tanya" aria-labelledby="tanya-judul" className="relative overflow-clip bg-day py-20 md:py-28">
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <p className="micro mb-5 text-salvia-ink">Tanya jawab</p>
+          <h2 id="tanya-judul" className="text-[2rem] leading-[1.14] md:text-[2.6rem]">Tidak ada pertanyaan yang terlalu dasar</h2>
+          <p className="mt-5 leading-relaxed text-slate-soft">
+            Enam hal yang paling sering ditanyakan. Istilahnya belum jelas? Semuanya ada di{' '}
+            <Link href="/kamus" className="text-slate-ink underline decoration-salvia underline-offset-4">kamus</Link>.
           </p>
-
-          <div className="border-l-4 border-sand pl-6 text-slate-soft italic text-base">
-            <Quote className="w-4 h-4 inline-block mb-1 mr-1 text-sand" />
-            "Designed not just to perform, but to empower your most intimate journey."
-          </div>
-
-          <div className="text-sm text-slate-soft pt-2">
-            🔒 100% private billing & shipping — always.
-          </div>
         </div>
-
-        {/* ❓ FAQ */}
-        <div className="space-y-6">
-          <h3 className="text-2xl font-medium text-slate-ink">Frequently Asked</h3>
-          <div className="divide-y divide-zinc-200 border border-slate-ink/12 rounded-xl bg-day shadow-sm">
-            {faqs.map((item, index) => (
-              <div key={index} className="px-6 py-5 group transition-all duration-200 hover:bg-day-2">
-                <button
-                  onClick={() => toggle(index)}
-                  className="w-full flex items-center justify-between text-left"
-                >
-                  <span className="font-medium text-slate-ink group-hover:text-sand transition">
-                    {item.q}
-                  </span>
-                  <ChevronDown
-                    size={20}
-                    className={`ml-4 text-slate-soft group-hover:text-sand transition-transform duration-300 ${
-                      active === index ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                {active === index && (
-                  <p className="mt-4 text-sm text-slate-soft leading-relaxed">
-                    {item.a}
-                  </p>
+        <div className="space-y-3">
+          {TANYA.map((t, i) => (
+            <details key={t.q} className="term-card group p-0 open:border-salvia/50" open={i === 0}>
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-slate-ink [&::-webkit-details-marker]:hidden">
+                {t.q}
+                <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-day-2 text-lg text-slate-ink transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <div className="px-6 pb-6 text-sm leading-relaxed text-slate-soft">
+                <p>{t.a}</p>
+                {t.tautan && (
+                  <Link href={t.tautan[0]} className="mt-3 inline-block font-semibold text-slate-ink underline decoration-salvia underline-offset-4">
+                    {t.tautan[1]} →
+                  </Link>
                 )}
               </div>
-            ))}
-          </div>
+            </details>
+          ))}
         </div>
       </div>
     </section>
