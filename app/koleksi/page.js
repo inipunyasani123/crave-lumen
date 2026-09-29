@@ -35,6 +35,7 @@ export default function KoleksiPage() {
           </p>
         </div>
         <div className="mt-14">
+          <h2 className="sr-only">Daftar barang</h2>
           <Koleksi />
         </div>
         <p className="micro mt-12 leading-[1.7] text-slate-soft">Nama, harga, dan spesifikasi adalah contoh untuk keperluan purwarupa desain.</p>
