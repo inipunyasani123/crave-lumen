@@ -55,8 +55,8 @@ export default function HeroSection() {
         <figure className="relative">
           <div className="pill relative aspect-[4/5] w-full overflow-hidden bg-day-2">
             <Image
-              src="/images/w2.jpeg"
-              alt="Momen tenang berdua"
+              src="/images/hero.webp"
+              alt="Dua orang berjalan bergandengan tangan di siang yang terang"
               fill
               priority
               sizes="(min-width: 1024px) 44vw, 100vw"
