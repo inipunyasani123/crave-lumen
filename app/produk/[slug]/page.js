@@ -6,7 +6,7 @@ import ProductCard from '@/components/ProductCard'
 import { PRODUK, labelKebutuhan, produkBySlug, rupiah } from '@/lib/katalog'
 import { istilahBySlug } from '@/lib/kamus'
 
-const SITE = 'https://crave-lumen.vercel.app'
+const SITE = 'https://crave-lumen.pintuweb.id'
 
 export function generateStaticParams() {
   return PRODUK.map((p) => ({ slug: p.slug }))

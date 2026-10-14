@@ -4,7 +4,7 @@ import CheckoutPage from '@/components/CheckoutPage'
 export const metadata = {
   title: 'Pemesanan — Positive Crave',
   description: 'Selesaikan pemesanan Anda. Dikirim dalam kemasan polos bersama kartu cara merawat.',
-  alternates: { canonical: 'https://crave-lumen.vercel.app/checkout' },
+  alternates: { canonical: 'https://crave-lumen.pintuweb.id/checkout' },
   robots: { index: false, follow: true },
 }
 

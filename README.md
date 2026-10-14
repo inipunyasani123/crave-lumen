@@ -2,7 +2,7 @@
 
 Landing page Positive Crave konsep "Lumen": keintiman dimulai dari cahaya — edukasi, rasa hormat, dan rasa aman.
 
-**Demo live:** https://crave-lumen.vercel.app
+**Demo live:** https://crave-lumen.pintuweb.id
 
 ![Tangkapan layar Positive Crave](public/og.jpg)
 

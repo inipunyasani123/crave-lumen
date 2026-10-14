@@ -6,7 +6,7 @@ export const metadata = {
   title: 'Kamus Istilah — Positive Crave',
   description:
     'Sembilan belas istilah yang sering muncul di keterangan produk keintiman — medical-grade, pH, osmolalitas, IPX, dan lainnya — dijelaskan datar, tanpa sindiran.',
-  alternates: { canonical: 'https://crave-lumen.vercel.app/kamus' },
+  alternates: { canonical: 'https://crave-lumen.pintuweb.id/kamus' },
 }
 
 const jsonLd = {

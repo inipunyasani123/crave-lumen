@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { BELAJAR, belajarBySlug } from '@/lib/belajar'
 import { istilahBySlug } from '@/lib/kamus'
 
-const SITE = 'https://crave-lumen.vercel.app'
+const SITE = 'https://crave-lumen.pintuweb.id'
 
 export function generateStaticParams() {
   return BELAJAR.map((b) => ({ slug: b.slug }))

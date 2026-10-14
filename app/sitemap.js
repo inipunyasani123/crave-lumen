@@ -1,7 +1,7 @@
 import { PRODUK } from '@/lib/katalog'
 import { BELAJAR } from '@/lib/belajar'
 
-const SITE = 'https://crave-lumen.vercel.app'
+const SITE = 'https://crave-lumen.pintuweb.id'
 
 export default function sitemap() {
   const now = new Date()

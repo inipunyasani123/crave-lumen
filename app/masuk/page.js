@@ -3,7 +3,7 @@ import AkunForm from '@/components/AkunForm'
 export const metadata = {
   title: 'Masuk — Positive Crave',
   description: 'Masuk ke akun Positive Crave untuk melihat pesanan dan pengingat isi ulang.',
-  alternates: { canonical: 'https://crave-lumen.vercel.app/masuk' },
+  alternates: { canonical: 'https://crave-lumen.pintuweb.id/masuk' },
   robots: { index: false, follow: true },
 }
 

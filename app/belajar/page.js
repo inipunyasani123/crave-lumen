@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Belajar — Positive Crave',
   description:
     'Penjelasan singkat dan terang tentang memilih pelumas, membersihkan alat, dan membaca label produk keintiman — lengkap dengan ringkasan tiga poin.',
-  alternates: { canonical: 'https://crave-lumen.vercel.app/belajar' },
+  alternates: { canonical: 'https://crave-lumen.pintuweb.id/belajar' },
 }
 
 export default function BelajarPage() {
