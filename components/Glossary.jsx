@@ -13,9 +13,9 @@ const PILIHAN = ['medical-grade', 'bebas-bpa', 'pelumas-berbahan-air', 'tahan-pe
 export default function Glossary() {
   const istilah = PILIHAN.map(istilahBySlug)
   return (
-    <section id="kamus" className="relative overflow-hidden bg-day-2 py-20 md:py-28">
+    <section id="kamus" className="relative overflow-hidden bg-day-2 py-16 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="mb-14 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-10 flex flex-col gap-6 md:mb-14 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <p className="micro mb-5 text-salvia-ink">Kamus Ringkas</p>
             <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">Istilah yang sering bikin ragu, dijelaskan lebih dulu</h2>
@@ -29,9 +29,11 @@ export default function Glossary() {
           </Link>
         </div>
 
-        <dl className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {/* Ponsel: enam istilah dijajar mendatar (geser) — bertumpuk, kartunya
+            dulu memanjangkan beranda hampir dua layar. */}
+        <dl className="no-scrollbar -mx-6 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto px-6 pb-1 md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
           {istilah.map((i) => (
-            <div key={i.slug} className="term-card flex flex-col p-7">
+            <div key={i.slug} className="term-card flex w-[80%] shrink-0 snap-start flex-col p-6 md:w-auto md:p-7">
               <dt className="font-[family-name:var(--font-display)] text-xl text-slate-ink">
                 <Link href={`/kamus#${i.slug}`} className="hover:text-salvia-ink">{i.kata}</Link>
               </dt>
@@ -44,7 +46,7 @@ export default function Glossary() {
           ))}
         </dl>
 
-        <div className="pill mt-10 flex flex-col gap-5 bg-salvia/10 px-8 py-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="pill mt-8 flex flex-col gap-5 bg-salvia/10 px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-8 md:mt-10">
           <p className="max-w-xl text-sm leading-relaxed text-slate-ink">
             Masih ada istilah yang belum jelas? Tanyakan dulu — tidak ada pertanyaan yang dianggap terlalu dasar, dan
             tidak ada yang menawari Anda produk sebagai jawabannya.

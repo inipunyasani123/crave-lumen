@@ -1,15 +1,14 @@
 import Link from 'next/link'
 import Koleksi from '@/components/Koleksi'
 import { PRODUK } from '@/lib/katalog'
+import { meta, SITE } from '@/lib/seo'
 
-const SITE = 'https://crave-lumen.pintuweb.id'
-
-export const metadata = {
-  title: 'Koleksi — Positive Crave',
+export const metadata = meta({
+  title: 'Koleksi',
   description:
     'Koleksi Positive Crave dengan angka yang bisa dibandingkan: bahan, ketahanan air, kebisingan, dan daya. Lihat sebagai kartu atau tabel perbandingan.',
-  alternates: { canonical: `${SITE}/koleksi` },
-}
+  path: '/koleksi',
+})
 
 const itemList = {
   '@context': 'https://schema.org',

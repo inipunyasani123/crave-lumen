@@ -40,7 +40,8 @@ Foto hero berlisensi **CC0 (domain publik)**: bebas dipakai, termasuk untuk kome
 
 - `public/images/hero.webp` — "Adult couple holding hands" oleh Alice Donovan Rouse (@alicekat), Wikimedia Commons, CC0 ([sumber](https://commons.wikimedia.org/w/index.php?curid=79267061)). Dipotong ke 4:5.
 - `public/images/minyak-pijat.webp` — ilustrasi buatan sendiri untuk purwarupa ini.
-- Foto produk lainnya (`p2`–`p8`, `p14`) belum terverifikasi asal-usulnya. Ganti dengan foto produk asli klien sebelum situs dipakai sungguhan.
+- `public/images/produk/*.webp` — ilustrasi buatan sendiri untuk purwarupa ini (menggantikan foto produk yang asal-usulnya tidak terverifikasi). Ganti dengan foto produk asli klien sebelum situs dipakai sungguhan.
+- Varian WebP di `public/_img/` dibuat dari gambar-gambar di atas oleh `scripts/static-images.mjs`.
 
 ---
 

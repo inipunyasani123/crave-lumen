@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import { BELAJAR } from '@/lib/belajar'
+import { meta } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Belajar — Positive Crave',
+export const metadata = meta({
+  title: 'Belajar',
   description:
     'Penjelasan singkat dan terang tentang memilih pelumas, membersihkan alat, dan membaca label produk keintiman — lengkap dengan ringkasan tiga poin.',
-  alternates: { canonical: 'https://crave-lumen.pintuweb.id/belajar' },
-}
+  path: '/belajar',
+})
 
 export default function BelajarPage() {
   return (

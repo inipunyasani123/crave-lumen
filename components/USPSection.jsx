@@ -25,23 +25,23 @@ const jaminan = [
 
 export default function USPSection() {
   return (
-    <section id="jaminan" className="relative overflow-hidden bg-day py-20 md:py-28">
+    <section id="jaminan" className="relative overflow-hidden bg-day py-16 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="mb-14 max-w-2xl">
+        <div className="mb-10 max-w-2xl md:mb-14">
           <p className="micro mb-5 text-salvia-ink">Jaminan</p>
           <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
             Empat hal yang membuatnya terang, bukan remang
           </h2>
         </div>
 
-        <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
           {jaminan.map((j) => (
-            <div key={j.title} className="term-card p-7">
-              <j.icon className="mb-6 h-6 w-6 text-salvia-ink" strokeWidth={1.5} aria-hidden="true" />
-              <dt className="font-[family-name:var(--font-display)] text-lg text-slate-ink">
+            <div key={j.title} className="term-card p-4 sm:p-7">
+              <j.icon className="mb-4 h-5 w-5 text-salvia-ink sm:mb-6 sm:h-6 sm:w-6" strokeWidth={1.5} aria-hidden="true" />
+              <dt className="font-[family-name:var(--font-display)] text-base text-slate-ink sm:text-lg">
                 {j.title}
               </dt>
-              <dd className="mt-3 text-sm leading-relaxed text-slate-soft">{j.desc}</dd>
+              <dd className="mt-2 text-[0.8125rem] leading-relaxed text-slate-soft sm:mt-3 sm:text-sm">{j.desc}</dd>
             </div>
           ))}
         </dl>

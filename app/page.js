@@ -4,7 +4,6 @@ import CategoryGrid from '@/components/CategoryGrid'
 import FeaturedProducts from '@/components/FeaturedProducts'
 import USPSection from '@/components/USPSection'
 import BelajarTeaser from '@/components/BelajarTeaser'
-import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import AboutAndFAQ from '@/components/AboutAndFAQ'
 import ContactSupport from '@/components/ContactSupport'
 
@@ -19,7 +18,6 @@ export default function Home() {
       <FeaturedProducts />
       <BelajarTeaser />
       <USPSection />
-      <TestimonialsCarousel />
       <AboutAndFAQ />
       <ContactSupport />
     </>

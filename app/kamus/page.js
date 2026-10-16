@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import KamusCari from '@/components/KamusCari'
 import { KAMUS } from '@/lib/kamus'
+import { meta } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Kamus Istilah — Positive Crave',
+export const metadata = meta({
+  title: 'Kamus Istilah',
   description:
-    'Sembilan belas istilah yang sering muncul di keterangan produk keintiman — medical-grade, pH, osmolalitas, IPX, dan lainnya — dijelaskan datar, tanpa sindiran.',
-  alternates: { canonical: 'https://crave-lumen.pintuweb.id/kamus' },
-}
+    'Sembilan belas istilah di keterangan produk keintiman — medical-grade, pH, osmolalitas, IPX, dan lainnya — dijelaskan datar, tanpa sindiran.',
+  path: '/kamus',
+})
 
 const jsonLd = {
   '@context': 'https://schema.org',

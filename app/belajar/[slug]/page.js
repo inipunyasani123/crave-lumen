@@ -2,8 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BELAJAR, belajarBySlug } from '@/lib/belajar'
 import { istilahBySlug } from '@/lib/kamus'
-
-const SITE = 'https://crave-lumen.pintuweb.id'
+import { meta, SITE } from '@/lib/seo'
 
 export function generateStaticParams() {
   return BELAJAR.map((b) => ({ slug: b.slug }))
@@ -13,12 +12,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params
   const b = belajarBySlug(slug)
   if (!b) return {}
-  return {
-    title: `${b.judul} — Belajar, Positive Crave`,
-    description: b.ringkas,
-    alternates: { canonical: `${SITE}/belajar/${b.slug}` },
-    openGraph: { type: 'article' },
-  }
+  return meta({ title: b.judul, description: b.ringkas, path: `/belajar/${b.slug}`, type: 'article' })
 }
 
 function Blok({ b }) {
@@ -36,11 +30,16 @@ function Blok({ b }) {
     )
   if (b.tabel)
     return (
-      <div className="term-card mt-8 overflow-x-auto">
+      // Tabel lebar digeser di layar sempit; wilayahnya bisa difokus papan ketik.
+      <div className="term-card mt-8 overflow-x-auto" tabIndex={0} role="region" aria-label="Tabel perbandingan">
         <table className="w-full min-w-[30rem] text-left text-sm">
           <thead>
             <tr className="border-b border-slate-ink/15 bg-day-2">
-              {b.tabel.kepala.map((k, i) => <th key={k + i} scope="col" className="px-5 py-3.5 font-semibold text-slate-ink">{k}</th>)}
+              {b.tabel.kepala.map((k, i) => (
+                <th key={k + i} scope="col" className="px-5 py-3.5 font-semibold text-slate-ink">
+                  {k || <span className="sr-only">Yang dibandingkan</span>}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>

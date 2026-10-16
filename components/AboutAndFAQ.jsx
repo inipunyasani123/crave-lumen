@@ -35,7 +35,7 @@ const TANYA = [
 
 export default function AboutAndFAQ() {
   return (
-    <section id="tanya" aria-labelledby="tanya-judul" className="relative overflow-clip bg-day py-20 md:py-28">
+    <section id="tanya" aria-labelledby="tanya-judul" className="relative overflow-clip bg-day py-16 md:py-28">
       <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <p className="micro mb-5 text-salvia-ink">Tanya jawab</p>

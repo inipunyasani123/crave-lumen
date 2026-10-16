@@ -6,12 +6,12 @@ import Footer from "@/components/Footer";
 const display = Lora({ subsets: ["latin"], variable: "--font-display", weight: ["500","600","700"] });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const __jsonld = {"@context":"https://schema.org","@type":"CreativeWork","name":"Positive Crave — Konsep Lumen","description":"Landing page brand keintiman","url":"https://crave-lumen.pintuweb.id"};
+const __jsonld = {"@context":"https://schema.org","@type":"CreativeWork","name":"Positive Crave — Konsep Lumen","description":"Konsep desain toko brand keintiman pasangan yang terang dan edukatif, dibuat untuk kontes brief Positive Crave","url":"https://crave-lumen.pintuweb.id"};
 
 export const metadata = {
   metadataBase: new URL("https://crave-lumen.pintuweb.id"),
   title: "Positive Crave — Konsep Lumen",
-  description: "Landing page Positive Crave konsep \"Lumen\": keintiman dimulai dari cahaya — edukasi, rasa hormat, dan rasa aman.",
+  description: "Konsep toko Positive Crave yang terang dan jujur: panel Fakta Produk ala label gizi, tabel perbandingan, dan kamus 19 istilah yang sering bikin ragu.",
   applicationName: "Positive Crave",
   keywords: ["intimacy brand", "wellness pasangan", "landing page terang", "desain web"],
   authors: [{ name: "Positive Crave" }],
@@ -22,15 +22,15 @@ export const metadata = {
     type: "website",
     locale: "id_ID",
     url: "https://crave-lumen.pintuweb.id",
-    siteName: "Positive Crave",
+    siteName: "Positive Crave — Konsep Lumen",
     title: "Positive Crave — Konsep Lumen",
-    description: "Landing page Positive Crave konsep \"Lumen\": keintiman dimulai dari cahaya — edukasi, rasa hormat, dan rasa aman.",
+    description: "Konsep toko Positive Crave yang terang dan jujur: panel Fakta Produk ala label gizi, tabel perbandingan, dan kamus 19 istilah yang sering bikin ragu.",
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Positive Crave — Konsep Lumen" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Positive Crave — Konsep Lumen",
-    description: "Landing page Positive Crave konsep \"Lumen\": keintiman dimulai dari cahaya — edukasi, rasa hormat, dan rasa aman.",
+    description: "Konsep toko Positive Crave yang terang dan jujur: panel Fakta Produk ala label gizi, tabel perbandingan, dan kamus 19 istilah yang sering bikin ragu.",
     images: ["/og.jpg"],
   },
   robots: {

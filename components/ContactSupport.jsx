@@ -2,13 +2,15 @@
 
 import { useState } from 'react'
 
-/* Bantuan Lumen: saluran kontak + formulir pertanyaan dengan kategori.
+/* Bantuan Lumen: formulir pertanyaan dengan kategori. Kanal resmi klien (chat,
+   surel, telepon, jam layanan) belum ada di brief, jadi tidak ada nomor atau
+   alamat karangan — yang ditampilkan adalah apa yang terjadi pada pertanyaannya.
    Purwarupa — formulir disimulasikan, tidak ada yang dikirim. */
 
-const SALURAN = [
-  { label: 'Chat', nilai: 'Setiap hari 10.00–22.00 WIB', ket: 'Dijawab orang, bukan bot.' },
-  { label: 'Surel', nilai: 'halo@positivecrave.id', href: 'mailto:halo@positivecrave.id', ket: 'Untuk pertanyaan panjang atau klaim garansi.' },
-  { label: 'Telepon', nilai: '+62 812 3456 7890', href: 'tel:+6281234567890', ket: 'Senin–Jumat 09.00–17.00 WIB.' },
+const LANGKAH = [
+  { label: 'Dijawab datar', ket: 'Istilahnya dijelaskan apa adanya — tanpa sindiran, tanpa tawaran barang.' },
+  { label: 'Masuk kamus', ket: 'Bila jawabannya berguna untuk orang lain, ditambahkan ke kamus tanpa nama penanya.' },
+  { label: 'Tidak disimpan', ket: 'Surel hanya dipakai untuk membalas, tidak untuk promosi.' },
 ]
 
 const TOPIK = ['Istilah & bahan', 'Cara pemakaian', 'Perawatan', 'Pengiriman', 'Garansi']
@@ -17,8 +19,8 @@ export default function ContactSupport() {
   const [ok, setOk] = useState(false)
 
   return (
-    <section id="kontak" aria-labelledby="kontak-judul" className="relative overflow-hidden bg-day-2 py-20 md:py-28">
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:gap-16">
+    <section id="kontak" aria-labelledby="kontak-judul" className="relative overflow-hidden bg-day-2 py-16 md:py-28">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-2 lg:gap-16">
         <div>
           <p className="micro mb-5 text-salvia-ink">Bantuan</p>
           <h2 id="kontak-judul" className="text-[2rem] leading-[1.14] md:text-[2.6rem]">Tanyakan seperti bertanya ke apotek</h2>
@@ -26,24 +28,23 @@ export default function ContactSupport() {
             Tenang, jelas, dan tanpa dorongan membeli. Bila jawabannya bisa berguna untuk orang lain, kami tambahkan
             ke kamus — tanpa menyebut siapa yang bertanya.
           </p>
-          <dl className="mt-10 space-y-4">
-            {SALURAN.map((s) => (
-              <div key={s.label} className="term-card p-5">
-                <dt className="micro text-salvia-ink">{s.label}</dt>
-                <dd className="mt-2 font-semibold text-slate-ink">
-                  {s.href ? <a href={s.href} className="break-all underline decoration-salvia/50 underline-offset-4 hover:decoration-salvia">{s.nilai}</a> : s.nilai}
-                </dd>
-                <dd className="mt-1 text-sm text-slate-soft">{s.ket}</dd>
-              </div>
+          <ol className="mt-8 space-y-3">
+            {LANGKAH.map((s, i) => (
+              <li key={s.label} className="term-card flex gap-4 p-5">
+                <span className="micro mt-0.5 text-salvia-ink">{String(i + 1).padStart(2, '0')}</span>
+                <span>
+                  <span className="block font-semibold text-slate-ink">{s.label}</span>
+                  <span className="mt-1 block text-sm text-slate-soft">{s.ket}</span>
+                </span>
+              </li>
             ))}
-          </dl>
+          </ol>
         </div>
 
         <div className="term-card h-fit p-7 sm:p-9">
           {ok ? (
             <p role="status" className="rounded-[var(--radius-round)] bg-salvia/12 p-6 text-slate-ink">
-              Terima kasih. Di toko sungguhan, pertanyaan Anda dijawab lewat surel dalam satu hari kerja. Ini purwarupa
-              desain, jadi tidak ada yang terkirim.
+              Terima kasih. Ini purwarupa desain untuk kontes, jadi pertanyaan Anda tidak terkirim ke mana pun.
             </p>
           ) : (
             <form
