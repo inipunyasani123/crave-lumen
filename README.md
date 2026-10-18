@@ -34,14 +34,9 @@ npm run dev
 
 Buka http://localhost:3000. Untuk build produksi: `npm run build` lalu `npm start`.
 
-## Kredit foto
+## Kredit foto & ilustrasi
 
-Foto hero berlisensi **CC0 (domain publik)**: bebas dipakai, termasuk untuk komersial, tanpa wajib atribusi. Asalnya tetap dicatat di sini supaya jelas.
-
-- `public/images/hero.webp` — "Adult couple holding hands" oleh Alice Donovan Rouse (@alicekat), Wikimedia Commons, CC0 ([sumber](https://commons.wikimedia.org/w/index.php?curid=79267061)). Dipotong ke 4:5.
-- `public/images/minyak-pijat.webp` — ilustrasi buatan sendiri untuk purwarupa ini.
-- `public/images/produk/*.webp` — ilustrasi buatan sendiri untuk purwarupa ini (menggantikan foto produk yang asal-usulnya tidak terverifikasi). Ganti dengan foto produk asli klien sebelum situs dipakai sungguhan.
-- Varian WebP di `public/_img/` dibuat dari gambar-gambar di atas oleh `scripts/static-images.mjs`.
+Daftar lengkap (berkas, pembuat, sumber, lisensi) ada di [`public/images/SUMBER.md`](public/images/SUMBER.md). Ringkasnya: foto hero CC0, ilustrasi produk buatan sendiri (`scripts/ilustrasi/produk.mjs`), varian WebP di `public/_img/` dibuat oleh `scripts/static-images.mjs`.
 
 ---
 
