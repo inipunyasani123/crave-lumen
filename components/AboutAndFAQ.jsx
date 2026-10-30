@@ -55,7 +55,7 @@ export default function AboutAndFAQ() {
               <div className="px-6 pb-6 text-sm leading-relaxed text-slate-soft">
                 <p>{t.a}</p>
                 {t.tautan && (
-                  <Link href={t.tautan[0]} className="mt-3 inline-block font-semibold text-slate-ink underline decoration-salvia underline-offset-4">
+                  <Link href={t.tautan[0]} className="mt-3 inline-block font-semibold text-slate-ink underline decoration-salvia underline-offset-4 sentuh">
                     {t.tautan[1]} →
                   </Link>
                 )}
