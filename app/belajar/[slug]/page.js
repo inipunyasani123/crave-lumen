@@ -89,7 +89,7 @@ export default async function BelajarArtikel({ params }) {
       <div aria-hidden="true" className="daylight absolute inset-x-0 top-0 h-96" />
       <div className="relative mx-auto max-w-3xl px-6">
         <nav aria-label="Remah roti" className="text-sm text-slate-soft">
-          <Link href="/belajar" className="hover:text-salvia-ink">Belajar</Link> <span aria-hidden="true">›</span> {b.topik}
+          <Link href="/belajar" className="hover:text-salvia-ink sentuh">Belajar</Link> <span aria-hidden="true">›</span> {b.topik}
         </nav>
         <h1 className="mt-6 text-[2.3rem] leading-[1.1] md:text-[3rem]">{b.judul}</h1>
         <p className="mt-5 text-lg leading-relaxed text-slate-soft">{b.ringkas}</p>

@@ -51,10 +51,10 @@ export default function Footer() {
           {kolom.map((k) => (
             <nav key={k.judul} aria-label={k.judul}>
               <h2 className="micro mb-5 text-slate-ink">{k.judul}</h2>
-              <ul className="space-y-3">
+              <ul className="space-y-0">
                 {k.tautan.map((t) => (
                   <li key={t.href}>
-                    <Link href={t.href} className="text-sm text-slate-soft transition-colors hover:text-salvia">
+                    <Link href={t.href} className="inline-flex min-h-11 items-center text-sm text-slate-soft transition-colors hover:text-salvia">
                       {t.label}
                     </Link>
                   </li>

@@ -42,9 +42,9 @@ export default async function ProdukPage({ params }) {
         <div aria-hidden="true" className="daylight absolute inset-x-0 top-0 h-96" />
         <div className="relative mx-auto max-w-6xl px-6">
           <nav aria-label="Remah roti" className="mb-10 flex flex-wrap items-center gap-2 text-sm text-slate-soft">
-            <Link href="/" className="hover:text-salvia-ink">Beranda</Link>
+            <Link href="/" className="hover:text-salvia-ink sentuh">Beranda</Link>
             <span aria-hidden="true">›</span>
-            <Link href={`/koleksi#${p.kebutuhan}`} className="hover:text-salvia-ink">{labelKebutuhan(p.kebutuhan)}</Link>
+            <Link href={`/koleksi#${p.kebutuhan}`} className="hover:text-salvia-ink sentuh">{labelKebutuhan(p.kebutuhan)}</Link>
             <span aria-hidden="true">›</span>
             <span className="text-slate-ink" aria-current="page">{p.nama}</span>
           </nav>

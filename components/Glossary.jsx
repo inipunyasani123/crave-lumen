@@ -35,7 +35,7 @@ export default function Glossary() {
           {istilah.map((i) => (
             <div key={i.slug} className="term-card flex w-[80%] shrink-0 snap-start flex-col p-6 md:w-auto md:p-7">
               <dt className="font-[family-name:var(--font-display)] text-xl text-slate-ink">
-                <Link href={`/kamus#${i.slug}`} className="hover:text-salvia-ink">{i.kata}</Link>
+                <Link href={`/kamus#${i.slug}`} className="hover:text-salvia-ink sentuh">{i.kata}</Link>
               </dt>
               <dd className="mt-3 flex-1 text-sm leading-relaxed text-slate-soft">{i.arti}</dd>
               <dd className="mt-5 border-t border-slate-ink/10 pt-4">
